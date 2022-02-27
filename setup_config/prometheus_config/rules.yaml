@@ -1,6 +1,8 @@
-groups:
 - name: node
   rules:
   - alert: InstanceDown
     expr: up == 0
     for: 1m
+
+  - alert: HighMemoryUsage
+    expr: (node_memory_MemAvailable_bytes - node_memory_MemFree_bytes) / node_memory_MemAvailable_bytes >= 0.75
